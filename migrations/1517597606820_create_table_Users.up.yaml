@@ -1,0 +1,8 @@
+- args:
+    sql: CREATE TABLE "Users"("Username" text NOT NULL, "Password" text NOT NULL,
+      "Age" integer NOT NULL, "Email" text NOT NULL, "Name" text NOT NULL, "Phone"
+      bigint NOT NULL, "id" serial NOT NULL, PRIMARY KEY ("id") )
+  type: run_sql
+- args:
+    name: Users
+  type: add_existing_table_or_view
