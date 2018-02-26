@@ -78,9 +78,47 @@ def webhook():
 		
 		print(resp.content)
 		resp = requests.request("POST", url2, data=json.dumps(pay), headers=headers)
-		return '<a href="https://drive.google.com/open?id=1S6iUcWVCCuxaA9kSVt7UI150n4vGQsihlcIhuIBcC_U">https://drive.google.com/open?id=1S6iUcWVCCuxaA9kSVt7UI150n4vGQsihlcIhuIBcC_U</a>'
+		return jsonify(link='https://drive.google.com/open?id=1S6iUcWVCCuxaA9kSVt7UI150n4vGQsihlcIhuIBcC_U')
 	#print(resp["hasura_id"])
 	
 	return "Hello world"
+
+@app.route('/check',methods=['GET', 'POST'])
+def check():
+	url3 = "https://data.cuttingly99.hasura-app.io/v1/query"
+	headers = {
+		    "Content-Type": "application/json"
+		}
+	stuff=dict()
+	if request.method=='POST':
+		if request.is_json:
+			stuff=request.get_json(force=True)
+			dbPayload={
+			"type": "count",
+			"args": {
+			"table": "Users",
+			"where": {
+			"Username": {
+			"$like": stuff["uname"]+"%"
+			}
+			},
+			"distinct": [
+			"Username"
+			]
+			}
+			}
+			x=False
+			resp = requests.request("POST", url3, data=json.dumps(dbPayload), headers=headers)
+			ct=json.loads(resp.text)["count"]
+			if ct>0 :
+				x=True
+			return jsonify(username=x)
+				
+
+	return "Hi"
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
