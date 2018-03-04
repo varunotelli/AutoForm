@@ -1,4 +1,4 @@
-# hello-python-flask
+# AutoForm
 
 Boilerplate Hasura project with [Flask](http://flask.pocoo.org/) microservice.
 
@@ -15,14 +15,14 @@ Boilerplate Hasura project with [Flask](http://flask.pocoo.org/) microservice.
 
 ```bash
 # Quickstart from this boilerplate 
-$ hasura quickstart hello-python-flask
+$ hasura clone varunotelli/AutoForm
 ```
 
 The `quickstart` command does the following:
 
-1. Creates a new directory `hello-python-flask` in the current working directory
+1. Creates a new directory `AutoForm` in the current working directory
 2. Creates a free Hasura cluster and sets it as the default for this project
-3. Sets up `hello-python-flask` as a git repository and adds `hasura` remote to push code
+3. Sets up `AutoForm` as a git repository and adds `hasura` remote to push code
 4. Adds your SSH public key to the cluster so that you can push to it
 
 ### Deploy
@@ -42,9 +42,6 @@ Once the git push goes through, Flask microservice (called `app`) will be availa
 # Open the flask app url in browser
 $ hasura microservice open app
 ```
-
-If the browser shows a "Hasura Hello World" page, everything is working as expected.
-If it doesn't, go through the previous steps and see if you missed anything.
 
 
 ## Edit and deploy code
